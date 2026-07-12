@@ -1,0 +1,382 @@
+{
+  "name": "mybantu-translation-eval-v1",
+  "description": "Synthetic trilingual evaluation dataset for MyBantu offline translation. All content is invented (names, addresses, phone numbers, amounts, account and model numbers are fictional). No private customer, school, family, government-account, or company documents were used.",
+  "languages": ["en", "ms", "zh"],
+  "directions": ["en-ms", "ms-en", "en-zh", "zh-en", "ms-zh", "zh-ms"],
+  "fields": {
+    "id": "stable case identifier",
+    "category": "content category",
+    "sourceLanguage": "BCP-47-like MyBantu code",
+    "targetLanguage": "BCP-47-like MyBantu code",
+    "sourceText": "text to translate",
+    "mustPreserve": "literal substrings that must appear unchanged (or with only numeral-width normalization) in the translation: numbers, dates, currency amounts, model numbers, error codes, phone numbers, proper names",
+    "notes": "optional evaluation guidance"
+  },
+  "cases": [
+    {
+      "id": "conv-en-ms-1",
+      "category": "daily-conversation",
+      "sourceLanguage": "en",
+      "targetLanguage": "ms",
+      "sourceText": "Good morning! Are you free to meet for lunch tomorrow at 12:30?",
+      "mustPreserve": ["12:30"]
+    },
+    {
+      "id": "conv-ms-en-1",
+      "category": "daily-conversation",
+      "sourceLanguage": "ms",
+      "targetLanguage": "en",
+      "sourceText": "Terima kasih banyak. Saya akan sampai dalam masa 15 minit.",
+      "mustPreserve": ["15"]
+    },
+    {
+      "id": "conv-en-zh-1",
+      "category": "daily-conversation",
+      "sourceLanguage": "en",
+      "targetLanguage": "zh",
+      "sourceText": "Please remember to bring your umbrella; it will rain this evening.",
+      "mustPreserve": []
+    },
+    {
+      "id": "conv-zh-en-1",
+      "category": "daily-conversation",
+      "sourceLanguage": "zh",
+      "targetLanguage": "en",
+      "sourceText": "我今天晚上七点会到你家，请帮我留一个停车位。",
+      "mustPreserve": []
+    },
+    {
+      "id": "conv-ms-zh-1",
+      "category": "daily-conversation",
+      "sourceLanguage": "ms",
+      "targetLanguage": "zh",
+      "sourceText": "Jangan lupa tutup tingkap sebelum keluar rumah.",
+      "mustPreserve": []
+    },
+    {
+      "id": "conv-zh-ms-1",
+      "category": "daily-conversation",
+      "sourceLanguage": "zh",
+      "targetLanguage": "ms",
+      "sourceText": "这个周末我们一起去巴刹买菜，好吗？",
+      "mustPreserve": []
+    },
+    {
+      "id": "gov-en-ms-1",
+      "category": "government-notice",
+      "sourceLanguage": "en",
+      "targetLanguage": "ms",
+      "sourceText": "This notice is to inform all residents that road maintenance will begin on 4 August 2026 and is expected to finish within 14 days.",
+      "mustPreserve": ["4", "2026", "14"]
+    },
+    {
+      "id": "gov-ms-en-1",
+      "category": "government-notice",
+      "sourceLanguage": "ms",
+      "targetLanguage": "en",
+      "sourceText": "Permohonan lesen perniagaan mesti dihantar ke pejabat majlis sebelum 30 September 2026 bersama bayaran pemprosesan sebanyak RM50.",
+      "mustPreserve": ["30", "2026", "RM50"]
+    },
+    {
+      "id": "gov-zh-en-1",
+      "category": "government-notice",
+      "sourceLanguage": "zh",
+      "targetLanguage": "en",
+      "sourceText": "请注意：本区将于2026年8月15日进行停水检修，预计中午12时至下午6时恢复供水。",
+      "mustPreserve": ["2026", "8", "15", "12", "6"]
+    },
+    {
+      "id": "school-en-zh-1",
+      "category": "school-notice",
+      "sourceLanguage": "en",
+      "targetLanguage": "zh",
+      "sourceText": "Dear parents, the school sports day will be held on Friday, 22 May 2026. Students must arrive by 7:15 am.",
+      "mustPreserve": ["22", "2026", "7:15"]
+    },
+    {
+      "id": "school-ms-en-1",
+      "category": "school-notice",
+      "sourceLanguage": "ms",
+      "targetLanguage": "en",
+      "sourceText": "Mesyuarat ibu bapa dan guru akan diadakan pada hari Sabtu ini di dewan sekolah bermula jam 9:00 pagi.",
+      "mustPreserve": ["9:00"]
+    },
+    {
+      "id": "school-zh-ms-1",
+      "category": "school-notice",
+      "sourceLanguage": "zh",
+      "targetLanguage": "ms",
+      "sourceText": "学校将于6月1日举行家长会，请家长准时出席。",
+      "mustPreserve": ["6", "1"]
+    },
+    {
+      "id": "bill-en-ms-1",
+      "category": "bill",
+      "sourceLanguage": "en",
+      "targetLanguage": "ms",
+      "sourceText": "Your electricity bill for June 2026 is RM187.45. Please pay before 18 July 2026 to avoid a late payment charge of RM10.",
+      "mustPreserve": ["2026", "RM187.45", "18", "RM10"]
+    },
+    {
+      "id": "bill-ms-zh-1",
+      "category": "bill",
+      "sourceLanguage": "ms",
+      "targetLanguage": "zh",
+      "sourceText": "Jumlah bil air anda untuk bulan Mei ialah RM32.80 dan perlu dijelaskan sebelum 25 Jun 2026.",
+      "mustPreserve": ["RM32.80", "25", "2026"]
+    },
+    {
+      "id": "bill-zh-en-1",
+      "category": "bill",
+      "sourceLanguage": "zh",
+      "targetLanguage": "en",
+      "sourceText": "您本月的宽带账单为RM129.00，账单编号为INV-2026-004512，请在7月20日前缴清。",
+      "mustPreserve": ["RM129.00", "INV-2026-004512", "7", "20"]
+    },
+    {
+      "id": "remind-en-zh-1",
+      "category": "payment-reminder",
+      "sourceLanguage": "en",
+      "targetLanguage": "zh",
+      "sourceText": "Final reminder: the outstanding amount of RM426.50 must be settled before 18 August 2026, otherwise your service may be suspended.",
+      "mustPreserve": ["RM426.50", "18", "2026"]
+    },
+    {
+      "id": "remind-ms-en-1",
+      "category": "payment-reminder",
+      "sourceLanguage": "ms",
+      "targetLanguage": "en",
+      "sourceText": "Peringatan mesra: sila jelaskan baki tertunggak sebanyak RM75.20 sebelum 5 Ogos 2026 untuk mengelakkan caj tambahan.",
+      "mustPreserve": ["RM75.20", "5", "2026"]
+    },
+    {
+      "id": "date-en-ms-1",
+      "category": "dates-deadlines",
+      "sourceLanguage": "en",
+      "targetLanguage": "ms",
+      "sourceText": "The registration deadline is 31 October 2026 at 5:00 pm. Late submissions will not be accepted.",
+      "mustPreserve": ["31", "2026", "5:00"]
+    },
+    {
+      "id": "date-zh-ms-1",
+      "category": "dates-deadlines",
+      "sourceLanguage": "zh",
+      "targetLanguage": "ms",
+      "sourceText": "报名截止日期为2026年9月30日下午5时正，逾期恕不受理。",
+      "mustPreserve": ["2026", "9", "30", "5"]
+    },
+    {
+      "id": "name-en-zh-1",
+      "category": "names",
+      "sourceLanguage": "en",
+      "targetLanguage": "zh",
+      "sourceText": "Please contact Encik Ahmad bin Ismail or Ms. Tan Mei Ling for further information.",
+      "mustPreserve": ["Ahmad", "Ismail"],
+      "notes": "Malay personal names must not be translated; Chinese name may be transliterated."
+    },
+    {
+      "id": "name-ms-en-1",
+      "category": "names",
+      "sourceLanguage": "ms",
+      "targetLanguage": "en",
+      "sourceText": "Sila serahkan borang ini kepada Puan Siti Nurhaliza binti Kamal di kaunter 3.",
+      "mustPreserve": ["Siti", "Nurhaliza", "Kamal", "3"]
+    },
+    {
+      "id": "addr-en-ms-1",
+      "category": "addresses",
+      "sourceLanguage": "en",
+      "targetLanguage": "ms",
+      "sourceText": "The new clinic is located at 12, Jalan Melati 4/3, Taman Seri Indah, 43000 Kajang, Selangor.",
+      "mustPreserve": ["12", "Jalan Melati 4/3", "43000", "Kajang", "Selangor"]
+    },
+    {
+      "id": "addr-zh-en-1",
+      "category": "addresses",
+      "sourceLanguage": "zh",
+      "targetLanguage": "en",
+      "sourceText": "活动地点：雪兰莪州八打灵再也SS2区Jalan SS2/61号店屋二楼。",
+      "mustPreserve": ["SS2", "61"]
+    },
+    {
+      "id": "phone-en-ms-1",
+      "category": "phone-numbers",
+      "sourceLanguage": "en",
+      "targetLanguage": "ms",
+      "sourceText": "For appointments, please call 03-8736 1122 or WhatsApp 012-345 6789 during office hours.",
+      "mustPreserve": ["03-8736 1122", "012-345 6789"]
+    },
+    {
+      "id": "phone-ms-zh-1",
+      "category": "phone-numbers",
+      "sourceLanguage": "ms",
+      "targetLanguage": "zh",
+      "sourceText": "Untuk sebarang pertanyaan, sila hubungi talian hotline kami di 1-300-88-2525.",
+      "mustPreserve": ["1-300-88-2525"]
+    },
+    {
+      "id": "aircon-en-ms-1",
+      "category": "aircon-service",
+      "sourceLanguage": "en",
+      "targetLanguage": "ms",
+      "sourceText": "The air conditioner compressor is faulty and the refrigerant level is low. We recommend a chemical wash and replacing the capacitor.",
+      "mustPreserve": []
+    },
+    {
+      "id": "aircon-ms-en-1",
+      "category": "aircon-service",
+      "sourceLanguage": "ms",
+      "targetLanguage": "en",
+      "sourceText": "Penyaman udara ini perlu servis penuh: cuci penapis, tambah gas R32, dan periksa kebocoran paip.",
+      "mustPreserve": ["R32"]
+    },
+    {
+      "id": "aircon-en-zh-1",
+      "category": "aircon-service",
+      "sourceLanguage": "en",
+      "targetLanguage": "zh",
+      "sourceText": "Model AC-INV12K requires a new fan motor. The estimated repair cost is RM280 including labour.",
+      "mustPreserve": ["AC-INV12K", "RM280"]
+    },
+    {
+      "id": "elec-en-ms-1",
+      "category": "electrical-service",
+      "sourceLanguage": "en",
+      "targetLanguage": "ms",
+      "sourceText": "The distribution board shows a tripped 32A MCB on circuit 4. Do not reset it until the wiring has been inspected.",
+      "mustPreserve": ["32A", "4", "MCB"]
+    },
+    {
+      "id": "elec-zh-en-1",
+      "category": "electrical-service",
+      "sourceLanguage": "zh",
+      "targetLanguage": "en",
+      "sourceText": "热水器漏电断路器（ELCB）跳闸，怀疑加热元件绝缘损坏，建议更换。",
+      "mustPreserve": ["ELCB"]
+    },
+    {
+      "id": "model-en-ms-1",
+      "category": "model-numbers",
+      "sourceLanguage": "en",
+      "targetLanguage": "ms",
+      "sourceText": "Replacement part WP-5501-B is compatible with washing machine models WM70A and WM80A manufactured after 2023.",
+      "mustPreserve": ["WP-5501-B", "WM70A", "WM80A", "2023"]
+    },
+    {
+      "id": "model-zh-ms-1",
+      "category": "model-numbers",
+      "sourceLanguage": "zh",
+      "targetLanguage": "ms",
+      "sourceText": "冰箱型号FR-450X的压缩机保修期为五年，请保留购买收据。",
+      "mustPreserve": ["FR-450X"]
+    },
+    {
+      "id": "err-en-zh-1",
+      "category": "error-codes",
+      "sourceLanguage": "en",
+      "targetLanguage": "zh",
+      "sourceText": "Error code E4 means the water inlet is blocked. Error code F17 indicates a drainage pump failure.",
+      "mustPreserve": ["E4", "F17"]
+    },
+    {
+      "id": "err-ms-en-1",
+      "category": "error-codes",
+      "sourceLanguage": "ms",
+      "targetLanguage": "en",
+      "sourceText": "Jika skrin memaparkan kod ralat H6, matikan unit selama 10 minit sebelum menghidupkannya semula.",
+      "mustPreserve": ["H6", "10"]
+    },
+    {
+      "id": "safe-en-ms-1",
+      "category": "safety-warning",
+      "sourceLanguage": "en",
+      "targetLanguage": "ms",
+      "sourceText": "Warning: disconnect the power supply before opening the cover. Risk of electric shock.",
+      "mustPreserve": []
+    },
+    {
+      "id": "safe-en-zh-1",
+      "category": "safety-warning",
+      "sourceLanguage": "en",
+      "targetLanguage": "zh",
+      "sourceText": "Caution: this appliance must be earthed. Do not operate with wet hands.",
+      "mustPreserve": []
+    },
+    {
+      "id": "safe-zh-ms-1",
+      "category": "safety-warning",
+      "sourceLanguage": "zh",
+      "targetLanguage": "ms",
+      "sourceText": "警告：维修前必须切断电源，否则可能导致触电或严重受伤。",
+      "mustPreserve": []
+    },
+    {
+      "id": "local-ms-en-1",
+      "category": "malaysian-phrasing",
+      "sourceLanguage": "ms",
+      "targetLanguage": "en",
+      "sourceText": "Kalau ada apa-apa masalah dengan mesin tu, bagitahu saya cepat-cepat ya.",
+      "mustPreserve": []
+    },
+    {
+      "id": "local-en-ms-1",
+      "category": "malaysian-phrasing",
+      "sourceLanguage": "en",
+      "targetLanguage": "ms",
+      "sourceText": "The technician will drop by your house after lunch, around 2 pm or so.",
+      "mustPreserve": ["2"]
+    },
+    {
+      "id": "manglish-en-1",
+      "category": "manglish-robustness",
+      "sourceLanguage": "auto",
+      "targetLanguage": "zh",
+      "sourceText": "Eh the aircon still not cold one leh, you all can send someone come check or not?",
+      "mustPreserve": [],
+      "notes": "Robustness test only: colloquial Manglish. Output should convey the complaint and request; grammatical source is not expected."
+    },
+    {
+      "id": "manglish-en-2",
+      "category": "manglish-robustness",
+      "sourceLanguage": "auto",
+      "targetLanguage": "ms",
+      "sourceText": "Wah your quotation so expensive one, can give discount a bit or not?",
+      "mustPreserve": [],
+      "notes": "Robustness test only."
+    },
+    {
+      "id": "mixed-ms-zh-1",
+      "category": "bill",
+      "sourceLanguage": "ms",
+      "targetLanguage": "zh",
+      "sourceText": "Sila bayar deposit RM150 semasa pemasangan dan baki RM350 selepas kerja siap.",
+      "mustPreserve": ["RM150", "RM350"]
+    },
+    {
+      "id": "mixed-zh-ms-2",
+      "category": "payment-reminder",
+      "sourceLanguage": "zh",
+      "targetLanguage": "ms",
+      "sourceText": "尊敬的顾客，您尚有RM88.00未结清，请于2026年8月1日前付款，谢谢。",
+      "mustPreserve": ["RM88.00", "2026", "8", "1"]
+    },
+    {
+      "id": "long-en-ms-1",
+      "category": "government-notice",
+      "sourceLanguage": "en",
+      "targetLanguage": "ms",
+      "sourceText": "All residents are advised that the annual community meeting will take place at the multipurpose hall on Saturday, 12 September 2026, from 10:00 am to 12:00 pm. Topics include neighbourhood security, rubbish collection schedules, and the proposed playground upgrade with an estimated budget of RM25,000. Residents who wish to raise other matters should submit them in writing at least three days before the meeting.",
+      "mustPreserve": ["12", "2026", "10:00", "12:00", "RM25,000"],
+      "notes": "Long-input latency case."
+    },
+    {
+      "id": "long-zh-en-1",
+      "category": "school-notice",
+      "sourceLanguage": "zh",
+      "targetLanguage": "en",
+      "sourceText": "各位家长您好：本校将于2026年10月5日至10月9日举行期中考试，考试范围包括第一至第五章。请家长督促孩子提前复习，并确保孩子在考试期间早上7点30分前到校。若孩子因病缺席，请于当天早上致电03-9876 5432向班主任请假。",
+      "mustPreserve": ["2026", "10", "5", "9", "03-9876 5432"],
+      "notes": "Long-input latency case."
+    }
+  ]
+}
