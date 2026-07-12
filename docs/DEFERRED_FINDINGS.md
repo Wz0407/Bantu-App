@@ -1,0 +1,16 @@
+# Deferred findings
+
+Items identified during the Phase 0 acceptance audit that are intentionally **not**
+implemented in Phase 0 because they concern code paths that do not exist yet. Adding
+speculative production code for them now would violate the Phase 0 scope boundary.
+
+Each item names the phase where it becomes real and must be addressed.
+
+| ID  | Finding                                                                                                                                                             | Address in                       | Notes                                                                                                                                                                                                                                                                                                                                             |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| D1  | Document AI HTTP hardening: explicit request body-size limits, malformed-JSON handling, and request/header timeouts.                                                | **Phase 2** (document ingestion) | The internal service currently exposes only `GET /internal/v1/health` and reads no request body. The first body-consuming route (`POST /internal/v1/documents/ingest`) must introduce body-size caps, JSON validation returning the machine-readable `ErrorResponse`, and timeouts. See `services/document-ai/src/api/router.ts` and `server.ts`. |
+| D2  | Empty successful translation result: `duplicate("")` returns `nullptr`, so a legitimately empty but successful translation would be indistinguishable from failure. | **Phase 1** (translation engine) | Only relevant once a real engine can return success. Add a guard/sentinel so an empty translated string is represented unambiguously. See `native/trilingua/src/trilingua.cpp` (`duplicate`, `mb_translate`).                                                                                                                                     |
+| D3  | Document IDs may appear in request-path logs.                                                                                                                       | **Phase 2** (document routes)    | The API exception handler and fallback log `context.Request.Path` (`services/api/src/MyBantu.Api/Program.cs`). Harmless today (only `/health` exists), but when `/api/v1/documents/{id}` lands, review against AGENTS.md §14 and redact/segment path logging as needed.                                                                           |
+
+These are tracked here so they are not lost; they are **out of scope for Phase 0** and
+must not be implemented before their listed phase.

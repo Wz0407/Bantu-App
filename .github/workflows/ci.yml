@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  web:
+    name: React web (build + test)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build -w @mybantu/shared-types
+      - run: npm run lint -w @mybantu/web
+      - run: npm run build -w @mybantu/web
+      - run: npm test -w @mybantu/web
+
+  document-ai:
+    name: Document AI (build + test)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build -w @mybantu/shared-types
+      - run: npm run lint -w @mybantu/document-ai
+      - run: npm run build -w @mybantu/document-ai
+      - run: npm test -w @mybantu/document-ai
+
+  shared-types:
+    name: Shared types (build + contract tests)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build -w @mybantu/shared-types
+      - run: npm run lint -w @mybantu/shared-types
+      - run: npm test -w @mybantu/shared-types
+      - run: npm run format:check
+
+  api:
+    name: ASP.NET Core (build + test)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 10.0.x
+      - run: dotnet restore services/api/MyBantu.slnx
+      - run: dotnet build services/api/MyBantu.slnx --no-restore --configuration Release
+      - run: dotnet test services/api/MyBantu.slnx --no-build --configuration Release
+
+  native:
+    name: TriLingua C++ (configure + build + test)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cmake -S native/trilingua -B native/trilingua/build
+      - run: cmake --build native/trilingua/build --parallel
+      - run: ctest --test-dir native/trilingua/build --output-on-failure

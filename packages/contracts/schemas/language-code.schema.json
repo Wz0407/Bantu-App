@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mybantu.local/contracts/v1/language-code.schema.json",
+  "title": "LanguageCode",
+  "description": "Supported MyBantu language codes. 'auto' is valid only where source-language detection is allowed.",
+  "$defs": {
+    "supportedLanguage": {
+      "type": "string",
+      "enum": ["en", "ms", "zh"]
+    },
+    "sourceLanguage": {
+      "type": "string",
+      "enum": ["en", "ms", "zh", "auto"]
+    }
+  }
+}

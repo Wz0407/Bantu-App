@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mybantu.local/contracts/v1/translation-response.schema.json",
+  "title": "TranslationResponse",
+  "description": "Placeholder translation response contract. Until Phase 1 the engine is NotConfigured and endpoints return an ErrorResponse with NATIVE_ENGINE_UNAVAILABLE instead of this shape. No fake translations are ever returned.",
+  "type": "object",
+  "required": [
+    "originalText",
+    "translatedText",
+    "detectedSourceLanguage",
+    "targetLanguage",
+    "modelVersion",
+    "processingTimeMs",
+    "warnings"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "originalText": { "type": "string" },
+    "translatedText": { "type": "string" },
+    "detectedSourceLanguage": {
+      "$ref": "https://mybantu.local/contracts/v1/language-code.schema.json#/$defs/supportedLanguage"
+    },
+    "targetLanguage": {
+      "$ref": "https://mybantu.local/contracts/v1/language-code.schema.json#/$defs/supportedLanguage"
+    },
+    "modelVersion": { "type": "string" },
+    "processingTimeMs": { "type": "number", "minimum": 0 },
+    "warnings": { "type": "array", "items": { "type": "string" } },
+    "glossaryTermsApplied": { "type": "array", "items": { "type": "string" } }
+  }
+}

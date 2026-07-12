@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mybantu.local/contracts/v1/service-availability.schema.json",
+  "title": "ServiceAvailability",
+  "description": "Availability of a MyBantu component. AI capabilities that are not set up must report NotConfigured or NotInstalled, never fake availability.",
+  "type": "string",
+  "enum": ["Available", "NotConfigured", "NotInstalled", "Unavailable"]
+}

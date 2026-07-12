@@ -1,0 +1,9 @@
+node_modules
+dist
+coverage
+bin
+obj
+# Ignore CMake build trees wherever they are created (build/, build-review/, cmake-build-*/).
+**/build/
+**/cmake-build-*/
+package-lock.json

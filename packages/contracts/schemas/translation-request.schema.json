@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mybantu.local/contracts/v1/translation-request.schema.json",
+  "title": "TranslationRequest",
+  "description": "Placeholder translation request contract. Translation behavior is implemented in Phase 1; the shape is fixed now so it is shared from the start.",
+  "type": "object",
+  "required": ["text", "sourceLanguage", "targetLanguage"],
+  "additionalProperties": false,
+  "properties": {
+    "text": { "type": "string", "minLength": 1 },
+    "sourceLanguage": {
+      "$ref": "https://mybantu.local/contracts/v1/language-code.schema.json#/$defs/sourceLanguage"
+    },
+    "targetLanguage": {
+      "$ref": "https://mybantu.local/contracts/v1/language-code.schema.json#/$defs/supportedLanguage"
+    },
+    "glossaryId": { "type": ["string", "null"] }
+  }
+}

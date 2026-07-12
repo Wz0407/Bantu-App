@@ -1,0 +1,59 @@
+# --- Node / TypeScript ---
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+.vite/
+.eslintcache
+
+# --- .NET ---
+bin/
+obj/
+*.user
+.vs/
+TestResults/
+
+# --- C++ / CMake ---
+# Ignore CMake build trees wherever they are created (build/, build-review/, cmake-build-*/).
+# No legitimate source directory in this repo is named "build".
+**/build/
+**/cmake-build-*/
+CMakeUserPresets.json
+
+# --- Environment & secrets ---
+.env
+.env.local
+.env.*.local
+*.pfx
+*.key
+
+# --- Local data (never commit user data, databases, or indexes) ---
+data/app/*
+data/documents/*
+data/indexes/*
+!data/app/.gitkeep
+!data/documents/.gitkeep
+!data/indexes/.gitkeep
+*.sqlite
+*.sqlite3
+*.db
+
+# --- Model weights (never commit) ---
+models/translation/*
+models/embeddings/*
+models/llm/*
+models/ocr/*
+!models/translation/.gitkeep
+!models/embeddings/.gitkeep
+!models/llm/.gitkeep
+!models/ocr/.gitkeep
+*.onnx
+*.gguf
+*.bin
+*.safetensors
+
+# --- Logs & OS noise ---
+logs/
+*.log
+.DS_Store
+Thumbs.db

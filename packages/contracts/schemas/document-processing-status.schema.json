@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mybantu.local/contracts/v1/document-processing-status.schema.json",
+  "title": "DocumentProcessingStatus",
+  "description": "Lifecycle status of an ingested document (placeholder; ingestion is implemented in Phase 2). Partial outputs must never be marked 'ready'.",
+  "type": "string",
+  "enum": ["uploaded", "processing", "ready", "failed"]
+}

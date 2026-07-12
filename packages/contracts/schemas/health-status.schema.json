@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mybantu.local/contracts/v1/health-status.schema.json",
+  "title": "HealthStatus",
+  "description": "Health report returned by every MyBantu service health endpoint.",
+  "type": "object",
+  "required": ["status", "service", "version", "timestampUtc", "components"],
+  "additionalProperties": false,
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["healthy", "degraded", "unhealthy"]
+    },
+    "service": {
+      "type": "string",
+      "description": "Stable service identifier, e.g. 'mybantu-api', 'mybantu-document-ai', 'trilingua-native'."
+    },
+    "version": { "type": "string" },
+    "timestampUtc": { "type": "string", "format": "date-time" },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "availability"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string" },
+          "availability": {
+            "$ref": "https://mybantu.local/contracts/v1/service-availability.schema.json"
+          },
+          "detail": {
+            "type": "string",
+            "description": "Optional human-readable note. Must never contain document content or secrets."
+          }
+        }
+      }
+    }
+  }
+}

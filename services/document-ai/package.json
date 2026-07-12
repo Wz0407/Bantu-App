@@ -1,0 +1,24 @@
+{
+  "name": "@mybantu/document-ai",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MyBantu Document AI internal service (loopback only; never exposed to the browser)",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/server.js",
+    "test": "vitest run",
+    "lint": "eslint src tests"
+  },
+  "dependencies": {
+    "@mybantu/shared-types": "0.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@types/node": "^24.10.9",
+    "eslint": "^9.39.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.4",
+    "vitest": "^3.2.4"
+  }
+}

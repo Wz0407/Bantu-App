@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mybantu.local/contracts/v1/error-response.schema.json",
+  "title": "ErrorResponse",
+  "description": "Standard machine-readable error envelope for all MyBantu APIs. Raw stack traces must never be exposed.",
+  "type": "object",
+  "required": ["code", "message", "retryable"],
+  "additionalProperties": false,
+  "properties": {
+    "code": {
+      "type": "string",
+      "description": "Stable error code from the AGENTS.md catalogue.",
+      "enum": [
+        "MODEL_NOT_INSTALLED",
+        "MODEL_LOAD_FAILED",
+        "UNSUPPORTED_LANGUAGE",
+        "UNSUPPORTED_FILE_TYPE",
+        "FILE_TOO_LARGE",
+        "DOCUMENT_PARSE_FAILED",
+        "OCR_FAILED",
+        "INDEX_BUILD_FAILED",
+        "INSUFFICIENT_EVIDENCE",
+        "NATIVE_ENGINE_UNAVAILABLE",
+        "LOCAL_LLM_UNAVAILABLE",
+        "VALIDATION_FAILED",
+        "NOT_FOUND",
+        "INTERNAL_ERROR"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "description": "Human-readable explanation: what failed, whether data was saved, whether retry is possible, what setup step is missing."
+    },
+    "retryable": { "type": "boolean" },
+    "correlationId": { "type": "string" },
+    "details": {
+      "type": "object",
+      "description": "Optional machine-readable details. Must never contain document content.",
+      "additionalProperties": true
+    }
+  }
+}

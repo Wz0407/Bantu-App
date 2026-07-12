@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/MyBantu.Api/MyBantu.Api.csproj" />
+    <Project Path="src/MyBantu.Application/MyBantu.Application.csproj" />
+    <Project Path="src/MyBantu.Domain/MyBantu.Domain.csproj" />
+    <Project Path="src/MyBantu.Infrastructure/MyBantu.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/MyBantu.IntegrationTests/MyBantu.IntegrationTests.csproj" />
+    <Project Path="tests/MyBantu.UnitTests/MyBantu.UnitTests.csproj" />
+  </Folder>
+</Solution>

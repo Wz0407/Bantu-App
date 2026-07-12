@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="xunit" Version="2.9.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\MyBantu.Application\MyBantu.Application.csproj" />
+    <ProjectReference Include="..\..\src\MyBantu.Domain\MyBantu.Domain.csproj" />
+    <ProjectReference Include="..\..\src\MyBantu.Infrastructure\MyBantu.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <!--
+    Copy the canonical JSON Schema contracts (the language-neutral source of truth)
+    next to the test assembly so the contract-drift tests read the real files rather
+    than duplicated literals. If these files change, the tests re-read them on rebuild.
+  -->
+  <ItemGroup>
+    <Content Include="..\..\..\..\packages\contracts\schemas\*.schema.json"
+             Link="contracts-schemas\%(Filename)%(Extension)"
+             CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>
