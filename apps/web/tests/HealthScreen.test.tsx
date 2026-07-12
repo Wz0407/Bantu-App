@@ -1,4 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import type { HealthStatus } from "@mybantu/shared-types";
 import { App } from "../src/app/App";
@@ -29,12 +30,16 @@ afterEach(() => {
 });
 
 describe("App shell", () => {
-  it("renders header, main landmark, and privacy note", async () => {
+  it("renders header, navigation, main landmark, and privacy note", async () => {
     mockFetch(new Response(JSON.stringify(healthyResponse), { status: 200 }));
     render(<App />);
     expect(screen.getByRole("heading", { level: 1, name: "MyBantu" })).toBeInTheDocument();
     expect(screen.getByRole("main")).toBeInTheDocument();
     expect(screen.getByText(/documents stay on this device/i)).toBeInTheDocument();
+    // Translate is the default view; the status screen is reachable via nav.
+    expect(screen.getByRole("heading", { level: 2, name: /translate/i })).toBeInTheDocument();
+    const user = userEvent.setup();
+    await user.click(screen.getByRole("button", { name: /system status/i }));
     await waitFor(() => expect(screen.getByText("degraded")).toBeInTheDocument());
   });
 });

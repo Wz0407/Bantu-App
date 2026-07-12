@@ -52,6 +52,25 @@ and orthography profile → `ms`/`en`. The detected language and a confidence ba
 returned; low confidence adds a warning rather than silently guessing. This is
 testable and offline; a learned language-ID model is a possible later upgrade.
 
+## Threading and concurrency (Phase 1B implementation finding)
+
+The engine loads CTranslate2 with **`num_threads_per_replica = 1`** (single-threaded
+inference), and the C ABI **serializes translate calls** behind an internal mutex.
+
+Reason: with this source build (CPU-only, Ruy backend, `OPENMP_RUNTIME=NONE`, MSVC
+`/MD` Release), the CTranslate2 multi-threaded CPU intra-op pool (auto = all cores,
+and also a bounded 4-thread pool) **non-deterministically deadlocks** — the process
+stalls with low CPU during a `translate_batch` and never completes, and the pool
+teardown can hang on process exit. Single-threaded inference is deterministic and
+stable, and a single `Translator` instance is not re-entrant anyway, so requests are
+serialized regardless.
+
+Trade-off: single-threaded INT8 latency is higher than the all-core Phase-1A Python
+benchmark (~3–5 s per short sentence vs ~0.4–0.8 s). For a **local single-user** MVP
+translating short letters/bills this is acceptable; it is recorded as a deferred
+performance item (revisit with an OpenMP/oneDNN CTranslate2 build or the official
+prebuilt library during Phase 6 packaging). No correctness or scope impact.
+
 ## Model download and verification strategy
 
 - Model files are **never committed** (enforced by `.gitignore`).

@@ -19,8 +19,19 @@ public sealed class MyBantuOptions
     public string DataDirectory { get; set; } = "./data";
 
     /// <summary>
-    /// Directory containing translation model files. Empty means the native
-    /// translation engine is NotConfigured (Phase 1 fills this in).
+    /// Directory containing the CTranslate2 translation model (installed by
+    /// scripts/model-setup). Empty means the native translation engine reports
+    /// NotConfigured and translation requests fail honestly.
     /// </summary>
     public string? TranslationModelDirectory { get; set; }
+
+    /// <summary>
+    /// Optional absolute path to the trilingua native library. When empty the
+    /// default OS library probing is used (app directory, PATH).
+    /// </summary>
+    public string? TrilinguaLibraryPath { get; set; }
+
+    /// <summary>Maximum accepted translation input length in characters.</summary>
+    [Range(1, 100_000)]
+    public int TranslationMaxInputChars { get; set; } = 5000;
 }
