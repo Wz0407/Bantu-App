@@ -4,6 +4,11 @@
     <ProjectReference Include="..\MyBantu.Domain\MyBantu.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- Unit tests exercise internal validation helpers directly. -->
+    <InternalsVisibleTo Include="MyBantu.UnitTests" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>

@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { HealthScreen } from "./HealthScreen";
 import { TranslateScreen } from "../features/translation/TranslateScreen";
+import { DocumentsScreen } from "../features/documents/DocumentsScreen";
 import "./app.css";
 
-type View = "translate" | "status";
+type View = "translate" | "documents" | "status";
 
 /**
  * Application shell: header, navigation, main landmark. Feature screens for
@@ -29,6 +30,13 @@ export function App() {
           </button>
           <button
             type="button"
+            onClick={() => setView("documents")}
+            aria-current={view === "documents" ? "page" : undefined}
+          >
+            Documents
+          </button>
+          <button
+            type="button"
             onClick={() => setView("status")}
             aria-current={view === "status" ? "page" : undefined}
           >
@@ -38,6 +46,7 @@ export function App() {
       </header>
       <main>
         {view === "translate" && <TranslateScreen />}
+        {view === "documents" && <DocumentsScreen />}
         {view === "status" && <HealthScreen />}
       </main>
       <footer className="app-footer">

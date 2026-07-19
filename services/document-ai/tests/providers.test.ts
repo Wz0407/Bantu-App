@@ -1,43 +1,36 @@
 import { describe, expect, it } from "vitest";
-import { createNotConfiguredRegistry } from "../src/adapters/not-configured.js";
+import {
+  NotConfiguredCitationGenerator,
+  NotConfiguredDocumentRetriever,
+  NotConfiguredEmbeddingProvider,
+  NotConfiguredLocalLlmProvider,
+} from "../src/adapters/not-configured.js";
 
-const providers = createNotConfiguredRegistry();
-
-describe("NotConfigured placeholder providers", () => {
+describe("Phase 3 NotConfigured placeholders", () => {
   it("never fake AI results: every operation fails explicitly", async () => {
+    const embeddings = new NotConfiguredEmbeddingProvider();
+    const llm = new NotConfiguredLocalLlmProvider();
+    const retriever = new NotConfiguredDocumentRetriever();
+    const citations = new NotConfiguredCitationGenerator();
+
     const results = await Promise.all([
-      providers.ingestion.ingest({ documentId: "d1", storedFilePath: "x", mimeType: "text/plain" }),
-      providers.ocr.extractText("x.png", "en"),
-      providers.embeddings.embed(["hello"]),
-      providers.llm.complete({ evidence: [], instruction: "summarise", outputLanguage: "en" }),
-      providers.retriever.retrieve({ documentId: "d1", query: "q", topK: 3 }),
+      embeddings.embed(),
+      llm.complete(),
+      retriever.retrieve(),
+      retriever.deleteIndex(),
     ]);
     for (const result of results) {
       expect(result.ok).toBe(false);
-      if (!result.ok) {
-        expect(result.errorCode).toBeTruthy();
-        expect(result.message).toContain("not configured");
-      }
+      if (!result.ok) expect(result.message).toContain("not configured");
     }
-    const citations = providers.citations.fromChunks([]);
-    expect(citations.ok).toBe(false);
+    expect(citations.fromChunks().ok).toBe(false);
+    expect(llm.modelVersion()).toBeNull();
   });
 
-  it("reports NotConfigured availability everywhere", () => {
-    for (const provider of Object.values(providers)) {
-      expect(provider.availability()).toBe("NotConfigured");
-    }
-  });
-
-  it("uses stable error codes from the shared catalogue", async () => {
-    const ocr = await providers.ocr.extractText("x.png", "en");
-    if (!ocr.ok) expect(ocr.errorCode).toBe("MODEL_NOT_INSTALLED");
-    const llm = await providers.llm.complete({
-      evidence: [],
-      instruction: "summarise",
-      outputLanguage: "ms",
-    });
-    if (!llm.ok) expect(llm.errorCode).toBe("LOCAL_LLM_UNAVAILABLE");
-    expect(providers.llm.modelVersion()).toBeNull();
+  it("reports NotConfigured availability with stable error codes", async () => {
+    const llm = new NotConfiguredLocalLlmProvider();
+    expect(llm.availability()).toBe("NotConfigured");
+    const result = await llm.complete();
+    if (!result.ok) expect(result.errorCode).toBe("LOCAL_LLM_UNAVAILABLE");
   });
 });

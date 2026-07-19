@@ -1,4 +1,6 @@
 import type {
+  DocumentExtraction,
+  DocumentSummary,
   ErrorResponse,
   HealthStatus,
   TranslationRequest,
@@ -56,4 +58,69 @@ export async function postTranslation(
     await parseError(response);
   }
   return (await response.json()) as TranslationResponse;
+}
+
+// --- Documents (UC-02) ---
+
+export async function uploadDocument(
+  file: File,
+  languageHint: string | null,
+  fetchImpl: FetchLike = fetch,
+): Promise<DocumentSummary> {
+  const form = new FormData();
+  form.append("file", file, file.name);
+  const query = languageHint ? `?languageHint=${encodeURIComponent(languageHint)}` : "";
+  const response = await fetchImpl(`/api/v1/documents${query}`, { method: "POST", body: form });
+  if (!response.ok) {
+    await parseError(response);
+  }
+  return (await response.json()) as DocumentSummary;
+}
+
+export async function listDocuments(fetchImpl: FetchLike = fetch): Promise<DocumentSummary[]> {
+  const response = await fetchImpl("/api/v1/documents", {
+    headers: { Accept: "application/json" },
+  });
+  if (!response.ok) {
+    await parseError(response);
+  }
+  return (await response.json()) as DocumentSummary[];
+}
+
+export async function getDocumentPages(
+  documentId: string,
+  fetchImpl: FetchLike = fetch,
+): Promise<DocumentExtraction> {
+  const response = await fetchImpl(`/api/v1/documents/${encodeURIComponent(documentId)}/pages`, {
+    headers: { Accept: "application/json" },
+  });
+  if (!response.ok) {
+    await parseError(response);
+  }
+  return (await response.json()) as DocumentExtraction;
+}
+
+export async function reprocessDocument(
+  documentId: string,
+  fetchImpl: FetchLike = fetch,
+): Promise<DocumentSummary> {
+  const response = await fetchImpl(`/api/v1/documents/${encodeURIComponent(documentId)}/process`, {
+    method: "POST",
+  });
+  if (!response.ok) {
+    await parseError(response);
+  }
+  return (await response.json()) as DocumentSummary;
+}
+
+export async function deleteDocument(
+  documentId: string,
+  fetchImpl: FetchLike = fetch,
+): Promise<void> {
+  const response = await fetchImpl(`/api/v1/documents/${encodeURIComponent(documentId)}`, {
+    method: "DELETE",
+  });
+  if (!response.ok) {
+    await parseError(response);
+  }
 }

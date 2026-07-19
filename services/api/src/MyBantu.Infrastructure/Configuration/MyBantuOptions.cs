@@ -34,4 +34,12 @@ public sealed class MyBantuOptions
     /// <summary>Maximum accepted translation input length in characters.</summary>
     [Range(1, 100_000)]
     public int TranslationMaxInputChars { get; set; } = 5000;
+
+    /// <summary>Maximum accepted document upload size in bytes (UC-02 configurable limit).</summary>
+    [Range(1, 500 * 1024 * 1024)]
+    public long MaxUploadBytes { get; set; } = 20 * 1024 * 1024;
+
+    /// <summary>Seconds allowed for a single Document AI ingestion call.</summary>
+    [Range(5, 600)]
+    public int DocumentAiTimeoutSeconds { get; set; } = 180;
 }

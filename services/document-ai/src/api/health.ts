@@ -1,5 +1,5 @@
 import type { HealthStatus } from "@mybantu/shared-types";
-import type { ProviderRegistry } from "../adapters/not-configured.js";
+import type { ProviderRegistry } from "../adapters/registry.js";
 import type { ServiceConfig } from "../config.js";
 
 /**

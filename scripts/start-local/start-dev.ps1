@@ -4,6 +4,12 @@
 $ErrorActionPreference = "Stop"
 $root = Resolve-Path (Join-Path $PSScriptRoot "..\..")
 
+# Both services MUST share one absolute data/models root (relative "./data"
+# resolves against each process's own working directory and would split storage).
+$env:MYBANTU_DATA_DIR = "$root\data"
+$env:MYBANTU_MODELS_DIR = "$root\models"
+$env:MyBantu__DataDirectory = "$root\data"
+
 Write-Host "Building shared types..."
 npm run build --prefix "$root" -w @mybantu/shared-types
 
