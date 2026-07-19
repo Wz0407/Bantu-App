@@ -1,4 +1,6 @@
 // C ABI behavior tests: status codes, memory ownership, no fake translations.
+// These run WITHOUT a model installed; model-dependent behavior is covered in
+// model_tests.cpp (which skips when no model is available).
 
 #include <gtest/gtest.h>
 
@@ -31,6 +33,10 @@ TEST_F(AbiTest, HealthReportsNotInitializedBeforeInitialize) {
 TEST_F(AbiTest, InitializeWithoutModelReportsNotConfigured) {
     EXPECT_EQ(mb_initialize(nullptr), MB_STATUS_ENGINE_NOT_CONFIGURED);
     EXPECT_EQ(mb_health_check(), MB_STATUS_ENGINE_NOT_CONFIGURED);
+}
+
+TEST_F(AbiTest, InitializeWithMissingDirectoryReportsNotConfigured) {
+    EXPECT_EQ(mb_initialize("Z:/definitely/not/a/model/dir"), MB_STATUS_ENGINE_NOT_CONFIGURED);
 }
 
 TEST_F(AbiTest, TranslateBeforeInitializeFailsExplicitly) {
@@ -76,6 +82,19 @@ TEST_F(AbiTest, UnsupportedLanguagesAreRejected) {
     result = mb_translate(&request);
     EXPECT_EQ(result.status_code, MB_STATUS_UNSUPPORTED_LANGUAGE);
     mb_free_translation_result(&result);
+}
+
+TEST_F(AbiTest, ModelVersionQueryWithoutModel) {
+    char buffer[64] = {'x', 0};
+    EXPECT_EQ(mb_get_model_version(buffer, sizeof(buffer)), MB_STATUS_NOT_INITIALIZED);
+    EXPECT_STREQ(buffer, "");
+
+    mb_initialize(nullptr);
+    EXPECT_EQ(mb_get_model_version(buffer, sizeof(buffer)), MB_STATUS_ENGINE_NOT_CONFIGURED);
+    EXPECT_STREQ(buffer, "");
+
+    EXPECT_EQ(mb_get_model_version(nullptr, 16), MB_STATUS_INVALID_ARGUMENT);
+    EXPECT_EQ(mb_get_model_version(buffer, 0), MB_STATUS_INVALID_ARGUMENT);
 }
 
 TEST_F(AbiTest, FreeIsIdempotentAndNullSafe) {

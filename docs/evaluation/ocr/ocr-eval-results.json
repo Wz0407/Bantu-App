@@ -1,0 +1,52 @@
+{
+  "engine": "tesseract.js 7 (WASM, local)",
+  "languageData": "tessdata_fast (eng, msa, chi_sim), Apache-2.0",
+  "environment": "win32 node v24.15.0",
+  "ranAtUtc": "2026-07-18T17:47:32.168Z",
+  "results": [
+    {
+      "file": "images/notice-en.png",
+      "language": "en",
+      "degraded": false,
+      "ok": true,
+      "elapsedMs": 365,
+      "confidence": 95,
+      "literalHits": 3,
+      "literalTotal": 3,
+      "missing": []
+    },
+    {
+      "file": "images/notice-ms.png",
+      "language": "ms",
+      "degraded": false,
+      "ok": true,
+      "elapsedMs": 407,
+      "confidence": 95,
+      "literalHits": 3,
+      "literalTotal": 3,
+      "missing": []
+    },
+    {
+      "file": "images/notice-zh.png",
+      "language": "zh",
+      "degraded": false,
+      "ok": true,
+      "elapsedMs": 469,
+      "confidence": 93,
+      "literalHits": 2,
+      "literalTotal": 3,
+      "missing": ["RM88.00"]
+    },
+    {
+      "file": "images/notice-en-degraded.png",
+      "language": "en",
+      "degraded": true,
+      "ok": true,
+      "elapsedMs": 393,
+      "confidence": 78,
+      "literalHits": 3,
+      "literalTotal": 3,
+      "missing": []
+    }
+  ]
+}

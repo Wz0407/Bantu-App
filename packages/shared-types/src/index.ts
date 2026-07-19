@@ -89,6 +89,39 @@ export interface TranslationResponse {
   glossaryTermsApplied?: string[];
 }
 
+/** Document metadata returned by the ASP.NET Core API (UC-02). */
+export interface DocumentSummary {
+  documentId: string;
+  fileName: string;
+  mimeType: string;
+  sizeBytes: number;
+  status: DocumentProcessingStatus;
+  detectedLanguage: string | null;
+  pageCount: number | null;
+  chunkCount: number | null;
+  createdAtUtc: string;
+  indexedAtUtc: string | null;
+  errorCode: string | null;
+  errorMessage: string | null;
+  warnings: string[];
+}
+
+/** One extracted page (page numbers are preserved end-to-end). */
+export interface DocumentPage {
+  pageNumber: number;
+  text: string;
+  extractionMethod: string;
+  ocrConfidence: number | null;
+}
+
+export interface DocumentExtraction {
+  documentId: string;
+  pageCount: number;
+  detectedLanguage: string;
+  warnings: string[];
+  pages: DocumentPage[];
+}
+
 export function isSupportedLanguage(value: string): value is SupportedLanguage {
   return (SUPPORTED_LANGUAGES as readonly string[]).includes(value);
 }

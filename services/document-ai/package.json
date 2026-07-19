@@ -11,7 +11,11 @@
     "lint": "eslint src tests"
   },
   "dependencies": {
-    "@mybantu/shared-types": "0.1.0"
+    "@huggingface/transformers": "^4.2.0",
+    "@mybantu/shared-types": "0.1.0",
+    "node-llama-cpp": "^3.19.0",
+    "pdfjs-dist": "^6.1.200",
+    "tesseract.js": "^7.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",

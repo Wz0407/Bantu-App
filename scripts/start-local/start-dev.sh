@@ -5,6 +5,14 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 
+# Both services MUST share one absolute data/models root. Relative "./data"
+# resolves against each process's working directory (dotnet run uses the project
+# directory), which would split the storage roots and make the Document AI
+# path guard reject every ingestion.
+export MYBANTU_DATA_DIR="$ROOT/data"
+export MYBANTU_MODELS_DIR="$ROOT/models"
+export MyBantu__DataDirectory="$ROOT/data"
+
 echo "Building shared types and Document AI service..."
 npm run build -w @mybantu/shared-types --prefix "$ROOT"
 npm run build -w @mybantu/document-ai --prefix "$ROOT"

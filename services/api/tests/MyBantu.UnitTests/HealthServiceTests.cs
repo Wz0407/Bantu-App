@@ -11,6 +11,17 @@ public class HealthServiceTests
     {
         public Task<AppResult<HealthStatus>> GetHealthAsync(CancellationToken cancellationToken)
             => Task.FromResult(result);
+
+        public Task<AppResult<DocumentAiIngestionResult>> IngestAsync(
+            DocumentAiIngestionRequest request, CancellationToken cancellationToken)
+            => throw new NotSupportedException("not used by health tests");
+
+        public Task<AppResult<DocumentAiExtraction>> GetExtractionAsync(
+            string documentId, CancellationToken cancellationToken)
+            => throw new NotSupportedException("not used by health tests");
+
+        public Task<AppResult<bool>> DeleteIndexAsync(string documentId, CancellationToken cancellationToken)
+            => throw new NotSupportedException("not used by health tests");
     }
 
     private static readonly TimeProvider Time = TimeProvider.System;

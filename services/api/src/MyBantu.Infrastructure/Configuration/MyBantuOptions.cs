@@ -19,8 +19,27 @@ public sealed class MyBantuOptions
     public string DataDirectory { get; set; } = "./data";
 
     /// <summary>
-    /// Directory containing translation model files. Empty means the native
-    /// translation engine is NotConfigured (Phase 1 fills this in).
+    /// Directory containing the CTranslate2 translation model (installed by
+    /// scripts/model-setup). Empty means the native translation engine reports
+    /// NotConfigured and translation requests fail honestly.
     /// </summary>
     public string? TranslationModelDirectory { get; set; }
+
+    /// <summary>
+    /// Optional absolute path to the trilingua native library. When empty the
+    /// default OS library probing is used (app directory, PATH).
+    /// </summary>
+    public string? TrilinguaLibraryPath { get; set; }
+
+    /// <summary>Maximum accepted translation input length in characters.</summary>
+    [Range(1, 100_000)]
+    public int TranslationMaxInputChars { get; set; } = 5000;
+
+    /// <summary>Maximum accepted document upload size in bytes (UC-02 configurable limit).</summary>
+    [Range(1, 500 * 1024 * 1024)]
+    public long MaxUploadBytes { get; set; } = 20 * 1024 * 1024;
+
+    /// <summary>Seconds allowed for a single Document AI ingestion call.</summary>
+    [Range(5, 600)]
+    public int DocumentAiTimeoutSeconds { get; set; } = 180;
 }

@@ -1,0 +1,32 @@
+{
+  "environment": "win32 node v24.15.0",
+  "ranAtUtc": "2026-07-19T00:31:46.909Z",
+  "embeddings": {
+    "model": "intfloat/multilingual-e5-small (Xenova int8 ONNX)",
+    "runtime": "@huggingface/transformers (local, allowRemoteModels=false)",
+    "dimensions": 384,
+    "loadMs": 870,
+    "batch4EmbedMs": 62,
+    "rssMbAfter": 530,
+    "similaritySanity": {
+      "en_bill_query_vs_en_bill": 0.899,
+      "en_bill_query_vs_ms_school": 0.811,
+      "en_bill_query_vs_zh_water": 0.825,
+      "en_bill_query_vs_aircon": 0.818,
+      "zh_water_query_vs_zh_water": 0.914,
+      "zh_water_query_vs_ms_school": 0.768
+    },
+    "retrievalSanityOk": true
+  },
+  "llm": {
+    "model": "Qwen2.5-1.5B-Instruct Q4_K_M (official GGUF)",
+    "runtime": "node-llama-cpp (local)",
+    "loadMs": 3801,
+    "generateMs": 31519,
+    "rssMbAfter": 2093,
+    "jsonValid": true,
+    "amountCorrect": true,
+    "deadlineMentionsJuly": true,
+    "rawReply": "{\n    \"answer\": \"You must pay RM187.45 by 18 July 2026 to avoid late fees or other consequences associated with non-payment of your electricity bill. Please ensure to make the payment before the deadline to avoid any issues with your account.\",\n    \"amount\": \"RM187.45\",\n    \"deadline\": \"18 July 2026"
+  }
+}

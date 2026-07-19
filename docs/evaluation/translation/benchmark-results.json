@@ -1,0 +1,573 @@
+{
+  "dataset": "mybantu-translation-eval-v1",
+  "model": "facebook/m2m100_418M (CTranslate2 conversion)",
+  "modelDir": "H:\\MyBantu Apps\\mybantu_project_docs\\models\\translation\\m2m100_418M-ct2",
+  "computeType": "int8",
+  "beamSize": 2,
+  "runtime": "ctranslate2 4.8.1",
+  "environment": {
+    "os": "Windows-10-10.0.26200-SP0",
+    "cpu": "Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",
+    "physicalCores": 14,
+    "logicalCores": 20,
+    "totalRamGb": 15.7,
+    "python": "3.10.9"
+  },
+  "coldStartSeconds": 1.04,
+  "processBaselineRssMb": 214.0,
+  "processLoadedRssMb": 734.2,
+  "processPeakRssMb": 737.5,
+  "modelRssDeltaMb": 523.5,
+  "latencyMsByDirection": {
+    "auto-ms": {
+      "n": 1,
+      "mean": 405.9,
+      "median": 405.9,
+      "max": 405.9
+    },
+    "auto-zh": {
+      "n": 1,
+      "mean": 455.2,
+      "median": 455.2,
+      "max": 455.2
+    },
+    "en-ms": {
+      "n": 12,
+      "mean": 708.2,
+      "median": 582.9,
+      "max": 2173.3
+    },
+    "en-zh": {
+      "n": 7,
+      "mean": 550.7,
+      "median": 579.8,
+      "max": 711.7
+    },
+    "ms-en": {
+      "n": 8,
+      "mean": 426.4,
+      "median": 420.4,
+      "max": 596.6
+    },
+    "ms-zh": {
+      "n": 4,
+      "mean": 426.6,
+      "median": 478.4,
+      "max": 506.7
+    },
+    "zh-en": {
+      "n": 6,
+      "mean": 909.1,
+      "median": 762.8,
+      "max": 2179.5
+    },
+    "zh-ms": {
+      "n": 6,
+      "mean": 504.1,
+      "median": 510.9,
+      "max": 688.3
+    }
+  },
+  "mustPreserve": {
+    "total": 92,
+    "hit": 80,
+    "rate": 0.87
+  },
+  "cases": [
+    {
+      "id": "conv-en-ms-1",
+      "direction": "en-ms",
+      "category": "daily-conversation",
+      "sourceChars": 63,
+      "latencyMs": 329.8,
+      "translated": "Selamat pagi! boleh tak jumpa untuk makan tengahari esok pukul 12.30?",
+      "mustPreserveTotal": 1,
+      "mustPreserveHit": 0,
+      "mustPreserveMissing": ["12:30"]
+    },
+    {
+      "id": "conv-ms-en-1",
+      "direction": "ms-en",
+      "category": "daily-conversation",
+      "sourceChars": 58,
+      "latencyMs": 258.5,
+      "translated": "Thank you very much, I’ll get in 15 minutes.",
+      "mustPreserveTotal": 1,
+      "mustPreserveHit": 1,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "conv-en-zh-1",
+      "direction": "en-zh",
+      "category": "daily-conversation",
+      "sourceChars": 66,
+      "latencyMs": 329.2,
+      "translated": "请记住把你的眼镜带回来,今晚会下雨。",
+      "mustPreserveTotal": 0,
+      "mustPreserveHit": 0,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "conv-zh-en-1",
+      "direction": "zh-en",
+      "category": "daily-conversation",
+      "sourceChars": 22,
+      "latencyMs": 417.4,
+      "translated": "I’m going to your house at 7 a.m. this night, please help me leave a parking place.",
+      "mustPreserveTotal": 0,
+      "mustPreserveHit": 0,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "conv-ms-zh-1",
+      "direction": "ms-zh",
+      "category": "daily-conversation",
+      "sourceChars": 47,
+      "latencyMs": 242.9,
+      "translated": "不要忘了在出门前关上窗户。",
+      "mustPreserveTotal": 0,
+      "mustPreserveHit": 0,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "conv-zh-ms-1",
+      "direction": "zh-ms",
+      "category": "daily-conversation",
+      "sourceChars": 17,
+      "latencyMs": 273.8,
+      "translated": "Hari ini saya akan pergi ke barbecue untuk membeli-belah.",
+      "mustPreserveTotal": 0,
+      "mustPreserveHit": 0,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "gov-en-ms-1",
+      "direction": "en-ms",
+      "category": "government-notice",
+      "sourceChars": 130,
+      "latencyMs": 663.0,
+      "translated": "Pemberitahuan ini bertujuan untuk memaklumkan kepada semua penduduk bahawa penyelenggaraan jalan akan bermula pada 4 Ogos 2026 dan dijangka selesai dalam tempoh 14 hari.",
+      "mustPreserveTotal": 3,
+      "mustPreserveHit": 3,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "gov-ms-en-1",
+      "direction": "ms-en",
+      "category": "government-notice",
+      "sourceChars": 129,
+      "latencyMs": 474.0,
+      "translated": "Business license applications must be submitted to the meeting office before 30 September 2026 along with the processing fee of RM50.",
+      "mustPreserveTotal": 3,
+      "mustPreserveHit": 3,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "gov-zh-en-1",
+      "direction": "zh-en",
+      "category": "government-notice",
+      "sourceChars": 42,
+      "latencyMs": 729.9,
+      "translated": "Please note: the area will be underway with water ceasefire on 15 August 2026 and the water supply is expected to be restored from 12 a.m. to 6 a.m.",
+      "mustPreserveTotal": 5,
+      "mustPreserveHit": 4,
+      "mustPreserveMissing": ["8"]
+    },
+    {
+      "id": "school-en-zh-1",
+      "direction": "en-zh",
+      "category": "school-notice",
+      "sourceChars": 105,
+      "latencyMs": 579.8,
+      "translated": "亲爱的父母,学校体育日将于2026年5月22日星期五举行。",
+      "mustPreserveTotal": 3,
+      "mustPreserveHit": 2,
+      "mustPreserveMissing": ["7:15"]
+    },
+    {
+      "id": "school-ms-en-1",
+      "direction": "ms-en",
+      "category": "school-notice",
+      "sourceChars": 101,
+      "latencyMs": 366.7,
+      "translated": "Parents and teachers will meet on Saturday at the school hall starting at 9:00 a.m.",
+      "mustPreserveTotal": 1,
+      "mustPreserveHit": 1,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "school-zh-ms-1",
+      "direction": "zh-ms",
+      "category": "school-notice",
+      "sourceChars": 22,
+      "latencyMs": 433.8,
+      "translated": "Sekolah ini akan mengadakan mesyuarat ibu bapa pada 1 Jun, dan ibu bapa diminta untuk hadir tepat pada masanya.",
+      "mustPreserveTotal": 2,
+      "mustPreserveHit": 1,
+      "mustPreserveMissing": ["6"]
+    },
+    {
+      "id": "bill-en-ms-1",
+      "direction": "en-ms",
+      "category": "bill",
+      "sourceChars": 119,
+      "latencyMs": 580.6,
+      "translated": "Akaun elektrik anda untuk Jun 2026 ialah RM187.45.Sila bayar sebelum 18 Julai 2026 untuk mengelakkan bayaran RM10 yang terlambat.",
+      "mustPreserveTotal": 4,
+      "mustPreserveHit": 4,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "bill-ms-zh-1",
+      "direction": "ms-zh",
+      "category": "bill",
+      "sourceChars": 91,
+      "latencyMs": 502.8,
+      "translated": "您的5月水费总额为32.80 RM,必须在2026年6月25日之前提交。",
+      "mustPreserveTotal": 3,
+      "mustPreserveHit": 2,
+      "mustPreserveMissing": ["RM32.80"]
+    },
+    {
+      "id": "bill-zh-en-1",
+      "direction": "zh-en",
+      "category": "bill",
+      "sourceChars": 50,
+      "latencyMs": 511.0,
+      "translated": "Your broadband bill this month is RM129.00, the bill number is INV-2026-004512, please pay before July 20.",
+      "mustPreserveTotal": 4,
+      "mustPreserveHit": 3,
+      "mustPreserveMissing": ["7"]
+    },
+    {
+      "id": "remind-en-zh-1",
+      "direction": "en-zh",
+      "category": "payment-reminder",
+      "sourceChars": 130,
+      "latencyMs": 692.9,
+      "translated": "最终提醒:在2026年8月18日之前,必须支付额外的 RM426.50 的金额,否则您的服务可能会被暂停。",
+      "mustPreserveTotal": 3,
+      "mustPreserveHit": 3,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "remind-ms-en-1",
+      "direction": "ms-en",
+      "category": "payment-reminder",
+      "sourceChars": 116,
+      "latencyMs": 537.9,
+      "translated": "Friendly warning: Please explain the exhausted saldo of RM75.20 before 5 August 2026 to avoid additional fees.",
+      "mustPreserveTotal": 3,
+      "mustPreserveHit": 3,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "date-en-ms-1",
+      "direction": "en-ms",
+      "category": "dates-deadlines",
+      "sourceChars": 95,
+      "latencyMs": 488.3,
+      "translated": "Tarikh pendaftaran ialah 31 Oktober 2026 pukul 5 petang. pendaftaran terlambat tidak akan diterima.",
+      "mustPreserveTotal": 3,
+      "mustPreserveHit": 2,
+      "mustPreserveMissing": ["5:00"]
+    },
+    {
+      "id": "date-zh-ms-1",
+      "direction": "zh-ms",
+      "category": "dates-deadlines",
+      "sourceChars": 30,
+      "latencyMs": 380.7,
+      "translated": "Tarikh akhir pendaftaran ialah pada 30 September 2026 pukul 5 petang, tidak boleh diterima.",
+      "mustPreserveTotal": 4,
+      "mustPreserveHit": 3,
+      "mustPreserveMissing": ["9"]
+    },
+    {
+      "id": "name-en-zh-1",
+      "direction": "en-zh",
+      "category": "names",
+      "sourceChars": 82,
+      "latencyMs": 496.8,
+      "translated": "请联系艾哈迈德·本·伊斯梅尔先生或Tan Mei Ling夫人以获取更多信息。",
+      "mustPreserveTotal": 2,
+      "mustPreserveHit": 0,
+      "mustPreserveMissing": ["Ahmad", "Ismail"]
+    },
+    {
+      "id": "name-ms-en-1",
+      "direction": "ms-en",
+      "category": "names",
+      "sourceChars": 77,
+      "latencyMs": 339.5,
+      "translated": "Please submit this form to Mrs. Nurhaliza binti Kamal at the counter 3.",
+      "mustPreserveTotal": 4,
+      "mustPreserveHit": 3,
+      "mustPreserveMissing": ["Siti"]
+    },
+    {
+      "id": "addr-en-ms-1",
+      "direction": "en-ms",
+      "category": "addresses",
+      "sourceChars": 92,
+      "latencyMs": 557.9,
+      "translated": "Klinik baru ini terletak di 12, Jalan Melati 4/3, Taman Seri Indah, 43000 Kajang, Selangor.",
+      "mustPreserveTotal": 5,
+      "mustPreserveHit": 5,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "addr-zh-en-1",
+      "direction": "zh-en",
+      "category": "addresses",
+      "sourceChars": 36,
+      "latencyMs": 795.8,
+      "translated": "Place of the event: Eight Pillings in Sherland and SS2 District Jalan SS2/61 shophouse 2nd floor.",
+      "mustPreserveTotal": 2,
+      "mustPreserveHit": 2,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "phone-en-ms-1",
+      "direction": "en-ms",
+      "category": "phone-numbers",
+      "sourceChars": 88,
+      "latencyMs": 585.2,
+      "translated": "Untuk tarikh, sila hubungi 03-8736 1122 atau WhatsApp 012-345 6789 semasa jam pejabat.",
+      "mustPreserveTotal": 2,
+      "mustPreserveHit": 2,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "phone-ms-zh-1",
+      "direction": "ms-zh",
+      "category": "phone-numbers",
+      "sourceChars": 77,
+      "latencyMs": 506.7,
+      "translated": "如有任何疑問,請聯絡我們的熱線 1-300-88-2525.",
+      "mustPreserveTotal": 1,
+      "mustPreserveHit": 1,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "aircon-en-ms-1",
+      "direction": "en-ms",
+      "category": "aircon-service",
+      "sourceChars": 132,
+      "latencyMs": 721.6,
+      "translated": "Kompresor penyejukan udara rosak dan tahap penyejukan rendah.Kami mengesyorkan pembersihan kimia dan penggantian kondensor.",
+      "mustPreserveTotal": 0,
+      "mustPreserveHit": 0,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "aircon-ms-en-1",
+      "direction": "ms-en",
+      "category": "aircon-service",
+      "sourceChars": 96,
+      "latencyMs": 596.6,
+      "translated": "This air cooling needs full service: wash the filter, add the R32 gas, and check the pipeline leakings.",
+      "mustPreserveTotal": 1,
+      "mustPreserveHit": 1,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "aircon-en-zh-1",
+      "direction": "en-zh",
+      "category": "aircon-service",
+      "sourceChars": 94,
+      "latencyMs": 711.7,
+      "translated": "AC-INV12K 型号需要一个新的风扇发动机. 估计修理成本为 RM280 包括劳动力。",
+      "mustPreserveTotal": 2,
+      "mustPreserveHit": 2,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "elec-en-ms-1",
+      "direction": "en-ms",
+      "category": "electrical-service",
+      "sourceChars": 113,
+      "latencyMs": 661.6,
+      "translated": "Jadual pengedaran menunjukkan MCB 32A yang terjejas pada sirkuit 4.Jangan set semula sehingga kabel telah disemak.",
+      "mustPreserveTotal": 3,
+      "mustPreserveHit": 3,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "elec-zh-en-1",
+      "direction": "zh-en",
+      "category": "electrical-service",
+      "sourceChars": 33,
+      "latencyMs": 821.1,
+      "translated": "The water heater leaked electrical router (ELCB) jumped, suspected heating component isolation damage, it is recommended to replace.",
+      "mustPreserveTotal": 1,
+      "mustPreserveHit": 1,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "model-en-ms-1",
+      "direction": "en-ms",
+      "category": "model-numbers",
+      "sourceChars": 109,
+      "latencyMs": 772.3,
+      "translated": "Bahagian penggantian WP-5501-B adalah kompatibel dengan model mesin basuh WM70A dan WM80A yang dihasilkan selepas 2023.",
+      "mustPreserveTotal": 4,
+      "mustPreserveHit": 4,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "model-zh-ms-1",
+      "direction": "zh-ms",
+      "category": "model-numbers",
+      "sourceChars": 30,
+      "latencyMs": 588.0,
+      "translated": "Tempoh jaminan kompresor untuk model peti sejuk FR-450X ialah lima tahun, sila simpan penerimaan pembelian.",
+      "mustPreserveTotal": 1,
+      "mustPreserveHit": 1,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "err-en-zh-1",
+      "direction": "en-zh",
+      "category": "error-codes",
+      "sourceChars": 97,
+      "latencyMs": 610.9,
+      "translated": "错误代码E4表示水输入被阻止,错误代码F17表示排水泵故障。",
+      "mustPreserveTotal": 2,
+      "mustPreserveHit": 2,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "err-ms-en-1",
+      "direction": "ms-en",
+      "category": "error-codes",
+      "sourceChars": 96,
+      "latencyMs": 534.3,
+      "translated": "If the screen shows the H6 error code, turn off the unit for 10 minutes before reactivating it.",
+      "mustPreserveTotal": 2,
+      "mustPreserveHit": 2,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "safe-en-ms-1",
+      "direction": "en-ms",
+      "category": "safety-warning",
+      "sourceChars": 86,
+      "latencyMs": 472.3,
+      "translated": "Peringatan: lepaskan bekalan kuasa sebelum membuka penutup. risiko kejutan elektrik.",
+      "mustPreserveTotal": 0,
+      "mustPreserveHit": 0,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "safe-en-zh-1",
+      "direction": "en-zh",
+      "category": "safety-warning",
+      "sourceChars": 71,
+      "latencyMs": 433.9,
+      "translated": "警惕:这种装置必须被地板上,不要用湿手操作。",
+      "mustPreserveTotal": 0,
+      "mustPreserveHit": 0,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "safe-zh-ms-1",
+      "direction": "zh-ms",
+      "category": "safety-warning",
+      "sourceChars": 27,
+      "latencyMs": 688.3,
+      "translated": "Peringatan: bekalan kuasa perlu dipotong sebelum pembaikan, jika tidak, ia boleh menyebabkan kecederaan atau kecederaan yang serius.",
+      "mustPreserveTotal": 0,
+      "mustPreserveHit": 0,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "local-ms-en-1",
+      "direction": "ms-en",
+      "category": "malaysian-phrasing",
+      "sourceChars": 72,
+      "latencyMs": 303.4,
+      "translated": "If you have any problems with the machine, tell me quickly.",
+      "mustPreserveTotal": 0,
+      "mustPreserveHit": 0,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "local-en-ms-1",
+      "direction": "en-ms",
+      "category": "malaysian-phrasing",
+      "sourceChars": 70,
+      "latencyMs": 492.5,
+      "translated": "Jurutera akan jatuh di rumah anda selepas makan tengah hari, kira-kira 2 petang atau sebagainya.",
+      "mustPreserveTotal": 1,
+      "mustPreserveHit": 1,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "manglish-en-1",
+      "direction": "auto-zh",
+      "category": "manglish-robustness",
+      "sourceChars": 81,
+      "latencyMs": 455.2,
+      "translated": "哦,空调还不冷,你可以送到某人来检查还是不?",
+      "mustPreserveTotal": 0,
+      "mustPreserveHit": 0,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "manglish-en-2",
+      "direction": "auto-ms",
+      "category": "manglish-robustness",
+      "sourceChars": 68,
+      "latencyMs": 405.9,
+      "translated": "Wah kutipan anda begitu mahal satu, boleh memberikan diskaun sedikit atau tidak?",
+      "mustPreserveTotal": 0,
+      "mustPreserveHit": 0,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "mixed-ms-zh-1",
+      "direction": "ms-zh",
+      "category": "bill",
+      "sourceChars": 77,
+      "latencyMs": 453.9,
+      "translated": "请在安装时支付 RM150 存款,工作完成后剩余 RM350。",
+      "mustPreserveTotal": 2,
+      "mustPreserveHit": 2,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "mixed-zh-ms-2",
+      "direction": "zh-ms",
+      "category": "payment-reminder",
+      "sourceChars": 38,
+      "latencyMs": 659.9,
+      "translated": "Pelanggan yang terhormat, anda masih mempunyai RM88.00 tidak diselesaikan, sila bayar sebelum 1 Ogos 2026, terima kasih.",
+      "mustPreserveTotal": 4,
+      "mustPreserveHit": 4,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "long-en-ms-1",
+      "direction": "en-ms",
+      "category": "government-notice",
+      "sourceChars": 414,
+      "latencyMs": 2173.3,
+      "translated": "Semua penduduk disyorkan bahawa mesyuarat komuniti tahunan akan diadakan di dewan pelbagai kegunaan pada hari Sabtu, 12 September 2026, dari 10:00 pagi hingga 12:00 petang. topik termasuk keselamatan kejiranan, jadual pengumpulan sampah, dan pembaharuan taman bermain yang dicadangkan dengan anggaran RM25,000. penduduk yang ingin mengangkat isu-isu lain harus mengemukakan mereka secara bertulis sekurang-kurangnya tiga hari sebelum mesyuarat.",
+      "mustPreserveTotal": 5,
+      "mustPreserveHit": 5,
+      "mustPreserveMissing": []
+    },
+    {
+      "id": "long-zh-en-1",
+      "direction": "zh-en",
+      "category": "school-notice",
+      "sourceChars": 115,
+      "latencyMs": 2179.5,
+      "translated": "Hello parents: The school will hold the mid-term exam from October 5 to October 9, 2026, the exam range includes chapters 1 to 5. parents are advised to encourage the child to review in advance and ensure that the child arrives at school before 7:30 a.m. during the exam. If the child is absent due to illness, please call 03-9876 5432 at the same morning to the director of the class for a vacation.",
+      "mustPreserveTotal": 5,
+      "mustPreserveHit": 4,
+      "mustPreserveMissing": ["10"]
+    }
+  ]
+}

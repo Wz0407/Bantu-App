@@ -1,4 +1,4 @@
-add_executable(trilingua_benchmarks abi_overhead_benchmark.cpp)
+add_executable(trilingua_benchmarks translation_benchmark.cpp)
 target_link_libraries(trilingua_benchmarks PRIVATE trilingua)
 
 if(MSVC)

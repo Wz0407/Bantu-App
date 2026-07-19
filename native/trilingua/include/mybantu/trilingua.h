@@ -7,6 +7,10 @@
  *  - Memory ownership: strings inside mb_translation_result are allocated by the
  *    library and must be released with mb_free_translation_result. Callers never
  *    free them directly. Request strings are owned by the caller.
+ *  - On SUCCESS (status_code == MB_STATUS_OK) translated_text, detected_language
+ *    and model_version are never NULL; an empty-but-valid translation is a real
+ *    empty string, distinguishable from failure (deferred finding D2).
+ *    On FAILURE they are NULL and error_message is set.
  *  - Model-specific inference stays behind the internal engine interface; this
  *    header exposes no model details.
  */
@@ -49,21 +53,30 @@ typedef struct mb_translation_request {
 
 typedef struct mb_translation_result {
     int status_code;         /* mb_status value */
-    char* translated_text;   /* library-owned; NULL on failure */
-    char* detected_language; /* library-owned; NULL on failure */
+    char* translated_text;   /* library-owned; non-NULL on success (may be empty), NULL on failure */
+    char* detected_language; /* library-owned; resolved source language on success */
     double elapsed_ms;
-    char* model_version;     /* library-owned; NULL when no model is loaded */
+    char* model_version;     /* library-owned; non-NULL on success */
     char* error_message;     /* library-owned; NULL on success */
+    double detection_confidence; /* 1.0 when source was explicit; <1.0 for auto-detection */
 } mb_translation_result;
 
 /*
- * Initialize the engine. model_directory may be NULL or empty; the engine then
- * stays in the NOT_CONFIGURED state (health still works, translation fails
- * explicitly). Returns MB_STATUS_OK or MB_STATUS_ENGINE_NOT_CONFIGURED.
+ * Initialize the engine from a model directory (CTranslate2 conversion installed
+ * by scripts/model-setup). NULL/empty or missing model files leave the engine in
+ * the NOT_CONFIGURED state (health still works, translation fails explicitly).
+ * Returns MB_STATUS_OK, MB_STATUS_ENGINE_NOT_CONFIGURED or MB_STATUS_MODEL_LOAD_FAILED.
+ * Thread-safety: engine (re)initialization is serialized; in-flight translations
+ * continue on the previous engine instance.
  */
 MB_API int mb_initialize(const char* model_directory);
 
-/* Translate. Never throws; always returns a result with an explicit status. */
+/* Translate. Never throws; always returns a result with an explicit status.
+ * Safe to CALL from multiple threads once initialized, but inference is serialized
+ * internally (a single model instance is not re-entrant): concurrent callers queue
+ * and each returns its own result. There is no mid-flight cancellation; decoding is
+ * bounded by an internal max output length, and callers enforce their own request
+ * timeouts. */
 MB_API mb_translation_result mb_translate(const mb_translation_request* request);
 
 /* Release all library-allocated strings inside the result. Safe on NULL fields
@@ -75,6 +88,12 @@ MB_API void mb_shutdown(void);
 
 /* Static library version string; always valid, never freed by the caller. */
 MB_API const char* mb_get_version(void);
+
+/* Copies the loaded model version (e.g. "m2m100_418M-ct2-int8/v1") into the
+ * caller-owned buffer (UTF-8, NUL-terminated, truncated if needed). Returns
+ * MB_STATUS_OK when a model is loaded, MB_STATUS_NOT_INITIALIZED /
+ * MB_STATUS_ENGINE_NOT_CONFIGURED otherwise (buffer receives an empty string). */
+MB_API int mb_get_model_version(char* buffer, int buffer_size);
 
 /*
  * Health/availability probe:
